@@ -93,11 +93,11 @@
                         <thead>
                             <tr class="border-b border-white/20">
                                 <th class="text-left p-3">Día</th>
-                                <th class="text-center p-3">Mañana</th>
-                                <th class="text-center p-3">Mediodía</th>
-                                <th class="text-center p-3">Tarde</th>
-                                <th class="text-center p-3">Vespertino</th>
-                                <th class="text-center p-3">Noche</th>
+                                <th class="text-center p-3">6am-9am</th>
+                                <th class="text-center p-3">9am-12pm</th>
+                                <th class="text-center p-3">12pm-3pm</th>
+                                <th class="text-center p-3">3pm-6pm</th>
+                                <th class="text-center p-3">6pm-8pm</th>
                             </tr>
                         </thead>
                         <tbody id="demandaTable">
@@ -466,31 +466,119 @@
             return ratio.toFixed(2);
         }
 
-        // Función para graficar el modelo de optimización lineal
-        function crearGraficoOptimizacionLineal() {
-            const ctx = document.getElementById('optimizacionLinealChart');
-            if (charts.optimizacion) charts.optimizacion.destroy();
+        // --- INICIO DE LÓGICA DE OPTIMIZACIÓN LINEAL (MÉTODO SIMPLEX) ---
 
-            // Límites de las restricciones (tomados del proyecto de Álgebra)
-            const r1Limit = 6; // X + Y <= 6
-            const r2Limit = 9; // 2X + Y <= 9
+        // Constantes del modelo de negocio para la función objetivo
+        const C_BASE = 469566;
+        const C_X_REL = 4; // Peso para técnicos de hora pico (X)
+        const C_Y_REL = 3; // Peso para técnicos de horario regular (Y)
 
-            // Puntos para la restricción 1: Y = 6 - X
-            const r1Points = [{x: 0, y: r1Limit}, {x: r1Limit, y: 0}];
+        // Implementación del Método Simplex para resolver el problema de programación lineal.
+        function solveWithSimplex(r1Limit, r2Limit) {
+            // Paso 1: Configurar el Tableau Simplex inicial.
+            // Las inecuaciones se convierten en ecuaciones con variables de holgura (s1, s2).
+            let tableau = [
+                // Z,  X (Pico),         Y (Regular),        s1, s2, Solución
+                [1, -(C_X_REL * C_BASE), -(C_Y_REL * C_BASE), 0,  0,  0],       // Fila Z (Función Objetivo a maximizar)
+                [0, 1,                   1,                   1,  0,  r1Limit], // Fila s1 (Restricción 1: X + Y <= r1Limit)
+                [0, 2,                   1,                   0,  1,  r2Limit]  // Fila s2 (Restricción 2: 2X + Y <= r2Limit)
+            ];
 
-            // Puntos para la restricción 2: Y = 9 - 2X
-            const r2Points = [{x: 0, y: r2Limit}, {x: r2Limit / 2, y: 0}];
+            const MAX_ITERATIONS = 10; // Límite para prevenir bucles infinitos.
+            for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
+                // Paso 2: Buscar la columna pivote (el valor más negativo en la fila Z).
+                const zRow = tableau[0];
+                let pivotColIndex = -1;
+                let minZValue = 0;
+                for (let j = 1; j < zRow.length - 1; j++) {
+                    if (zRow[j] < minZValue) {
+                        minZValue = zRow[j];
+                        pivotColIndex = j;
+                    }
+                }
+
+                // Si no hay negativos, la solución es óptima.
+                if (pivotColIndex === -1) break;
+
+                // Paso 3: Determinar la fila pivote (el menor ratio positivo).
+                let pivotRowIndex = -1;
+                let minRatio = Infinity;
+                for (let i = 1; i < tableau.length; i++) {
+                    const pivotColValue = tableau[i][pivotColIndex];
+                    if (pivotColValue > 0) {
+                        const ratio = tableau[i][tableau[i].length - 1] / pivotColValue;
+                        if (ratio < minRatio) {
+                            minRatio = ratio;
+                            pivotRowIndex = i;
+                        }
+                    }
+                }
+
+                // Paso 4: Realizar operaciones de fila para pivotar.
+                const pivotElement = tableau[pivotRowIndex][pivotColIndex];
+                // Normalizar la fila pivote.
+                for (let j = 0; j < tableau[pivotRowIndex].length; j++) {
+                    tableau[pivotRowIndex][j] /= pivotElement;
+                }
+                // Hacer cero los otros elementos de la columna pivote.
+                for (let i = 0; i < tableau.length; i++) {
+                    if (i !== pivotRowIndex) {
+                        const factor = tableau[i][pivotColIndex];
+                        for (let j = 0; j < tableau[i].length; j++) {
+                            tableau[i][j] -= factor * tableau[pivotRowIndex][j];
+                        }
+                    }
+                }
+            }
+
+            return extractSolutionFromTableau(tableau);
+        }
+
+        // Procesa el tableau final para extraer la solución.
+        function extractSolutionFromTableau(tableau) {
+            const solutionColIndex = tableau[0].length - 1;
+            let solution = { x: 0, y: 0, z: tableau[0][solutionColIndex] };
+
+            // Busca las columnas de X (índice 1) e Y (índice 2) para ver si son variables básicas.
+            for (let j = 1; j <= 2; j++) {
+                let pivotRow = -1;
+                let oneCount = 0;
+                for (let i = 1; i < tableau.length; i++) {
+                    if (Math.round(tableau[i][j]) === 1) {
+                        oneCount++;
+                        pivotRow = i;
+                    }
+                }
+
+                // Si la columna tiene un solo '1' y el resto son '0's (en las filas de restricciones), es básica.
+                if (oneCount === 1) {
+                    if (j === 1) solution.x = tableau[pivotRow][solutionColIndex]; // Es X
+                    if (j === 2) solution.y = tableau[pivotRow][solutionColIndex]; // Es Y
+                }
+            }
+            return solution;
+        }
+
+        // Función de predicción polinómica para simular un modelo de machine learning.
+        // Esta función toma un valor base y le aplica una curva de crecimiento.
+        function predecirConPolinomio(valorBase, factorCrecimiento) {
+            if (valorBase <= 0) return 0;
+            // Modelo polinómico simple: f(x) = x * factor + 0.05 * x^0.8
+            // Esto añade un crecimiento no lineal que se modera para valores más altos.
+            const prediccion = valorBase * factorCrecimiento 
+                             + 0.05 * Math.pow(valorBase, 0.8);
+            return Math.round(prediccion);
         }
 
         // Función Predecir_Demanda
         function predecirDemanda(datosHistoricos) {
             return datosHistoricos.map(dia => ({
                 ...dia,
-                h1Predicha: Math.round(parseFloat(dia.h1) * 1.08), // 6-9
-                h2Predicha: Math.round(parseFloat(dia.h2) * 1.12), // 9-12
-                h3Predicha: Math.round(parseFloat(dia.h3) * 1.15), // 12-3
-                h4Predicha: Math.round(parseFloat(dia.h4) * 1.10), // 3-6
-                h5Predicha: Math.round(parseFloat(dia.h5) * 1.05)  // 6-8
+                h1Predicha: predecirConPolinomio(parseFloat(dia.h1), 1.08), // 6-9
+                h2Predicha: predecirConPolinomio(parseFloat(dia.h2), 1.12), // 9-12
+                h3Predicha: predecirConPolinomio(parseFloat(dia.h3), 1.15), // 12-3
+                h4Predicha: predecirConPolinomio(parseFloat(dia.h4), 1.10), // 3-6
+                h5Predicha: predecirConPolinomio(parseFloat(dia.h5), 1.05)  // 6-8
             }));
         }
 
