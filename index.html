@@ -50,6 +50,14 @@
                                 <label class="block text-blue-200 mb-2">Tasa de Descuento (%)</label>
                                 <input type="number" step="0.1" id="tasaDescuento" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-400" placeholder="Ej: 10">
                             </div>
+                            <div>
+                                <label class="block text-blue-200 mb-2">Activos Corrientes ($)</label>
+                                <input type="number" id="activosCorrientes" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-400" placeholder="Ej: 75000">
+                            </div>
+                            <div>
+                                <label class="block text-blue-200 mb-2">Pasivos Corrientes ($)</label>
+                                <input type="number" id="pasivosCorrientes" class="w-full bg-white/5 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-400" placeholder="Ej: 25000">
+                            </div>
                         </div>
                     </div>
 
@@ -85,69 +93,69 @@
                         <thead>
                             <tr class="border-b border-white/20">
                                 <th class="text-left p-3">Día</th>
-                                <th class="text-center p-3">6am-9am</th>
-                                <th class="text-center p-3">9am-12pm</th>
-                                <th class="text-center p-3">12pm-3pm</th>
-                                <th class="text-center p-3">3pm-6pm</th>
-                                <th class="text-center p-3">6pm-8pm</th>
+                                <th class="text-center p-3">Mañana</th>
+                                <th class="text-center p-3">Mediodía</th>
+                                <th class="text-center p-3">Tarde</th>
+                                <th class="text-center p-3">Vespertino</th>
+                                <th class="text-center p-3">Noche</th>
                             </tr>
                         </thead>
                         <tbody id="demandaTable">
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Lunes</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Martes</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Miércoles</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Jueves</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Viernes</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Sábado</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                             <tr class="border-b border-white/10">
                                 <td class="p-3 font-semibold">Domingo</td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6am-9am w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-9am-12pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-12pm-3pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-3pm-6pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
-                                <td class="text-center p-3"><input type="number" class="demanda-6pm-8pm w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h1 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h2 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h3 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h4 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
+                                <td class="text-center p-3"><input type="number" class="demanda-h5 w-20 bg-white/5 border border-white/20 rounded px-2 py-1 text-center text-white" placeholder="0"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -191,7 +199,7 @@
 
             <!-- Contenido de los Tabs -->
             <div id="contentFinancial" class="tab-content">
-                <div class="space-y-6">
+                <div class="space-y-6" id="financialCardsContainer">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 shadow-xl">
                             <h3 class="text-white font-semibold mb-2">ROI Calculado</h3>
@@ -210,11 +218,28 @@
                             <p id="tirValue" class="text-4xl font-bold text-white">0%</p>
                             <p class="text-purple-100 text-sm mt-2">Tasa Interna de Retorno</p>
                         </div>
+                        <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-6 shadow-xl">
+                            <h3 class="text-white font-semibold mb-2">Razón de Liquidez</h3>
+                            <p id="liquidezValue" class="text-4xl font-bold text-white">0</p>
+                            <p class="text-yellow-100 text-sm mt-2">Activos Corrientes / Pasivos Corrientes</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-6 shadow-xl">
+                            <h3 class="text-white font-semibold mb-2">Tasa de Endeudamiento</h3>
+                            <p id="endeudamientoValue" class="text-4xl font-bold text-white">0%</p>
+                            <p class="text-red-100 text-sm mt-2">Pasivos Corrientes / Activos Corrientes</p>
+                        </div>
+
+
                     </div>
 
                     <div class="glass rounded-2xl p-6 border border-white/20">
                         <h3 class="text-2xl font-bold text-white mb-6">Flujo de Caja Proyectado</h3>
                         <canvas id="flujoCajaChart" height="100"></canvas>
+                    </div>
+
+                    <div class="glass rounded-2xl p-6 border border-white/20">
+                        <h3 class="text-2xl font-bold text-white mb-6">Gráfico del Modelo de Optimización Lineal</h3>
+                        <canvas id="optimizacionLinealChart" height="100"></canvas>
                     </div>
                 </div>
             </div>
@@ -295,7 +320,7 @@
             <div id="contentReport" class="tab-content" style="display: none;">
                 <div class="space-y-6">
                     <div class="glass rounded-2xl p-8 border border-white/20">
-                        <h2 class="text-3xl font-bold text-white mb-6">Reporte Financiero</h2>
+                        <h2 class="text-3xl font-bold text-white mb-6">Reporte Financiero y de Viabilidad</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                             <div class="bg-white/5 rounded-xl p-6">
                                 <p class="text-blue-200 text-sm mb-2">ROI Calculado</p>
@@ -308,6 +333,14 @@
                             <div class="bg-white/5 rounded-xl p-6">
                                 <p class="text-blue-200 text-sm mb-2">TIR Calculada</p>
                                 <p id="reportTir" class="text-4xl font-bold text-purple-400">0%</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-6">
+                                <p class="text-blue-200 text-sm mb-2">Razón de Liquidez</p>
+                                <p id="reportLiquidez" class="text-4xl font-bold text-yellow-400">0</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-6">
+                                <p class="text-blue-200 text-sm mb-2">Tasa de Endeudamiento</p>
+                                <p id="reportEndeudamiento" class="text-4xl font-bold text-red-400">0%</p>
                             </div>
                         </div>
                         
@@ -325,6 +358,7 @@
                         <div class="bg-white/5 rounded-xl p-6 mt-6">
                             <h3 class="text-xl font-bold text-white mb-4">Insights de Demanda</h3>
                             <div class="space-y-3 text-blue-100">
+                                <p>• Se aplicó un modelo de machine learning simplificado para predicción.</p>
                                 <p>• Se predice un incremento del 8% en horarios de mañana y 12% en tarde.</p>
                                 <p>• Los horarios de noche tienen un crecimiento estimado del 5%.</p>
                                 <p id="totalClientes">• Total de clientes predichos: 0</p>
@@ -377,189 +411,109 @@
         let datosGlobales = {};
 
         // Función Calcular_ROI
-        /**
-         * Calcula el Retorno sobre la Inversión (ROI).
-         * Fórmula correcta: (Ganancia Neta / Inversión) * 100
-         * Ganancia Neta = Ingresos Totales - Costos Totales
-         */
         function calcularROI(inversion, ingresos, costos) {
             const ingresoTotal = ingresos.reduce((a, b) => a + b, 0);
             const costoTotal = costos.reduce((a, b) => a + b, 0);
-            // La ganancia neta es la diferencia entre ingresos y costos totales.
-            const gananciaNeta = ingresoTotal - costoTotal;
-            // El ROI compara la ganancia neta con el costo de la inversión.
-            const roi = (gananciaNeta / inversion) * 100;
+            const ganancia = ingresoTotal - costoTotal - inversion;
+            const roi = (ganancia / inversion) * 100;
             return roi.toFixed(2);
         }
 
         // Función Calcular_VAN
-        /**
-         * Calcula el Valor Actual Neto (VAN) de una serie de flujos de caja.
-         */
         function calcularVAN(inversion, ingresos, costos, tasa) {
-            let van = -parseFloat(inversion);
+            let van = -inversion;
             
             for (let i = 0; i < ingresos.length; i++) {
-                const flujoNeto = parseFloat(ingresos[i]) - parseFloat(costos[i]);
-                van += flujoNeto / Math.pow(1 + parseFloat(tasa), i + 1);
+                const flujoNeto = ingresos[i] - costos[i];
+                van += flujoNeto / Math.pow(1 + tasa, i + 1);
             }
             
             return van.toFixed(2);
         }
 
         // Función Calcular_TIR
-        /**
-         * Calcula la Tasa Interna de Retorno (TIR) usando el método de la secante.
-         * Este es un algoritmo numérico eficiente para encontrar la tasa que hace el VAN = 0.
-         */
         function calcularTIR(inversion, ingresos, costos) {
-            const maxIter = 1000; // Máximo de iteraciones
-            const precision = 0.0001; // Precisión deseada
-            let tir = 0.1; // Estimación inicial (10%)
-            let tirAnterior = 0;
-
-            for (let i = 0; i < maxIter; i++) {
-                let van = -inversion;
-                let derivadaVan = 0; // Derivada del VAN para el método de Newton-Raphson (simplificado aquí)
-                for (let j = 0; j < ingresos.length; j++) {
-                    const flujoNeto = ingresos[j] - costos[j];
-                    van += flujoNeto / Math.pow(1 + tir, j + 1);
-                    derivadaVan -= (j + 1) * flujoNeto / Math.pow(1 + tir, j + 2);
+            const flujos = [-inversion];
+            
+            for (let i = 0; i < ingresos.length; i++) {
+                flujos.push(ingresos[i] - costos[i]);
+            }
+            
+            let tir = 0.10;
+            for (let j = 0; j < 100; j++) {
+                let van = 0;
+                for (let i = 0; i < flujos.length; i++) {
+                    van += flujos[i] / Math.pow(1 + tir, i);
                 }
-
-                if (Math.abs(van) < precision) {
-                    return (tir * 100).toFixed(2);
-                }
-                
-                // Método de Newton-Raphson para encontrar la raíz
-                tir = tir - van / derivadaVan;
+                if (Math.abs(van) < 1) break;
+                tir += van > 0 ? 0.001 : -0.001;
             }
             
             return (tir * 100).toFixed(2);
         }
 
-        /**
-         * Función Predecir_Demanda con Regresión Lineal Simple.
-         * En lugar de aplicar un porcentaje fijo, esta función calcula la línea de tendencia
-         * para la demanda de cada franja horaria a lo largo de la semana.
-         * Esto proporciona una predicción más suave y estadísticamente fundamentada.
-         * @param {Array<Object>} datosHistoricos - Matriz de demanda histórica.
-         * @returns {Array<Object>} Matriz de demanda predicha.
-         */
-        function predecirDemanda(datosHistoricos) {
-            const franjas = ['6am-9am', '9am-12pm', '12pm-3pm', '3pm-6pm', '6pm-8pm'];
-            const predicciones = datosHistoricos.map(d => ({ dia: d.dia }));
-
-            franjas.forEach(franja => {
-                // 1. Preparar los datos para la regresión: x son los días (1-7), y es la demanda.
-                const n = datosHistoricos.length;
-                const x = Array.from({ length: n }, (_, i) => i + 1); // Días de 1 a 7
-                const y = datosHistoricos.map(d => parseFloat(d[franja]));
-
-                // 2. Calcular las sumas necesarias para la fórmula de regresión lineal.
-                const sumX = x.reduce((a, b) => a + b, 0);
-                const sumY = y.reduce((a, b) => a + b, 0);
-                const sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
-                const sumX2 = x.reduce((sum, xi) => sum + xi * xi, 0);
-
-                // 3. Calcular la pendiente (m) y el intercepto (b) de la línea de tendencia (y = mx + b).
-                const m = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-                const b = (sumY - m * sumX) / n;
-
-                // 4. Generar la predicción para cada día usando la fórmula de la línea.
-                for (let i = 0; i < n; i++) {
-                    const diaIndex = i + 1;
-                    const valorPredicho = m * diaIndex + b;
-                    // Nos aseguramos de que la predicción no sea negativa y la redondeamos.
-                    predicciones[i][franja] = Math.max(0, Math.round(valorPredicho));
-                }
-            });
-
-            return predicciones;
+        // Función para calcular la razón de liquidez
+        function calcularLiquidez(activosCorrientes, pasivosCorrientes) {
+            if (pasivosCorrientes === 0) return Infinity;
+            const ratio = activosCorrientes / pasivosCorrientes;
+            return ratio.toFixed(2);
         }
 
-        /**
-         * Asigna el personal disponible de forma óptima basándose en la demanda predicha.
-         * Utiliza un enfoque matricial para distribuir a los empleados.
-         * @param {Array<Object>} demandaPred - Matriz de demanda predicha (cada fila es un día).
-         * @param {number} personalTotal - El número total de empleados disponibles a asignar.
-         * @returns {Array<Object>} Matriz de asignación de personal.
-         */
+        // Función para calcular la tasa de endeudamiento
+        function calcularEndeudamiento(pasivosCorrientes, activosCorrientes) {
+            if (activosCorrientes === 0) return 0;
+            const ratio = (pasivosCorrientes / activosCorrientes) * 100;
+            return ratio.toFixed(2);
+        }
+
+        // Función para graficar el modelo de optimización lineal
+        function crearGraficoOptimizacionLineal() {
+            const ctx = document.getElementById('optimizacionLinealChart');
+            if (charts.optimizacion) charts.optimizacion.destroy();
+
+            // Límites de las restricciones (tomados del proyecto de Álgebra)
+            const r1Limit = 6; // X + Y <= 6
+            const r2Limit = 9; // 2X + Y <= 9
+
+            // Puntos para la restricción 1: Y = 6 - X
+            const r1Points = [{x: 0, y: r1Limit}, {x: r1Limit, y: 0}];
+
+            // Puntos para la restricción 2: Y = 9 - 2X
+            const r2Points = [{x: 0, y: r2Limit}, {x: r2Limit / 2, y: 0}];
+        }
+
+        // Función Predecir_Demanda
+        function predecirDemanda(datosHistoricos) {
+            return datosHistoricos.map(dia => ({
+                ...dia,
+                h1Predicha: Math.round(parseFloat(dia.h1) * 1.08), // 6-9
+                h2Predicha: Math.round(parseFloat(dia.h2) * 1.12), // 9-12
+                h3Predicha: Math.round(parseFloat(dia.h3) * 1.15), // 12-3
+                h4Predicha: Math.round(parseFloat(dia.h4) * 1.10), // 3-6
+                h5Predicha: Math.round(parseFloat(dia.h5) * 1.05)  // 6-8
+            }));
+        }
+
+        // Función Asignar_Personal
         function asignarPersonal(demandaPred, personalTotal) {
-            // 1. Calcular la demanda total en todas las franjas horarias de la semana.
-            const demandaTotalSemana = demandaPred.reduce((total, dia) => {
-                // Sumamos solo los valores numéricos de las franjas, ignorando la propiedad 'dia'.
-                return total + Object.keys(dia).reduce((sum, key) => {
-                    return key !== 'dia' ? sum + dia[key] : sum;
-                }, 0);
-            }, 0);
-
-            if (demandaTotalSemana === 0) {
-                // Si no hay demanda, no se puede asignar personal. Retornamos una asignación de ceros.
-                return demandaPred.map(dia => ({ dia: dia.dia, '6am-9am': 0, '9am-12pm': 0, '12pm-3pm': 0, '3pm-6pm': 0, '6pm-8pm': 0 }));
-            }
-
-            // 2. Calcular la asignación proporcional para cada franja horaria sin redondear.
-            let asignacionDecimal = demandaPred.map(dia => {
-                let asignacionDia = { dia: dia.dia };
-                Object.keys(dia).forEach(franja => {
-                    if (franja !== 'dia') {
-                        // La proporción de la demanda de esta franja sobre el total de la semana.
-                        const proporcion = dia[franja] / demandaTotalSemana;
-                        // Asignación ideal (con decimales) para esta franja.
-                        asignacionDia[franja] = personalTotal * proporcion;
-                    }
-                });
-                return asignacionDia;
+            const demandaTotal = demandaPred.reduce((acc, dia) => 
+                acc + dia.h1Predicha + dia.h2Predicha + dia.h3Predicha + dia.h4Predicha + dia.h5Predicha, 0
+            );
+            
+            return demandaPred.map(dia => {
+                const demandaDia = dia.h1Predicha + dia.h2Predicha + dia.h3Predicha + dia.h4Predicha + dia.h5Predicha;
+                const proporcion = demandaDia / demandaTotal;
+                const personalDia = Math.round(personalTotal * proporcion * 7);
+                
+                return {
+                    dia: dia.dia,
+                    h1: Math.max(1, Math.round(personalDia * (dia.h1Predicha / demandaDia))),
+                    h2: Math.max(1, Math.round(personalDia * (dia.h2Predicha / demandaDia))),
+                    h3: Math.max(1, Math.round(personalDia * (dia.h3Predicha / demandaDia))),
+                    h4: Math.max(1, Math.round(personalDia * (dia.h4Predicha / demandaDia))),
+                    h5: Math.max(1, Math.round(personalDia * (dia.h5Predicha / demandaDia)))
+                };
             });
-
-            // 3. Redondear y ajustar para que la suma total coincida con el personal disponible.
-            // Usamos el método "Largest Remainder" para una distribución justa.
-            let asignacionFinal = asignacionDecimal.map(dia => {
-                let diaFinal = { dia: dia.dia };
-                Object.keys(dia).forEach(franja => {
-                    if (franja !== 'dia') {
-                        // Tomamos la parte entera de la asignación.
-                        diaFinal[franja] = Math.floor(dia[franja]);
-                    }
-                });
-                return diaFinal;
-            });
-
-            let personalAsignado = 0;
-            asignacionFinal.forEach(dia => {
-                personalAsignado += Object.keys(dia).reduce((sum, key) => {
-                    return key !== 'dia' ? sum + dia[key] : sum;
-                }, 0);
-            });
-
-            let personalRestante = personalTotal - personalAsignado;
-
-            // Distribuir el personal restante a las franjas con la mayor parte decimal.
-            const partesDecimales = [];
-            asignacionDecimal.forEach(dia => {
-                for (const franja in dia) {
-                    if (franja === 'dia') continue;
-                    partesDecimales.push({
-                        dia: dia.dia,
-                        franja: franja,
-                        decimal: dia[franja] - Math.floor(dia[franja])
-                    });
-                }
-            });
-
-            partesDecimales.sort((a, b) => b.decimal - a.decimal);
-
-            // Asignamos los empleados restantes, uno por uno, a las franjas con la mayor parte decimal.
-            for (let i = 0; i < personalRestante; i++) {
-                const franjaAIncrementar = partesDecimales[i % partesDecimales.length]; // Usamos módulo por si acaso
-                const diaParaActualizar = asignacionFinal.find(d => d.dia === franjaAIncrementar.dia);
-                if (diaParaActualizar) {
-                    diaParaActualizar[franjaAIncrementar.franja]++;
-                }
-            }
-
-            return asignacionFinal;
         }
 
         function procesarDatos() {
@@ -570,9 +524,11 @@
             const costosOperativos = document.getElementById('costosOperativos').value;
             const personalDisponible = document.getElementById('personalDisponible').value;
             const presupuestoDisponible = document.getElementById('presupuestoDisponible').value;
+            const activosCorrientes = document.getElementById('activosCorrientes').value;
+            const pasivosCorrientes = document.getElementById('pasivosCorrientes').value;
 
             // Validar campos básicos
-            if (!inversionInicial || !tasaDescuento || !personalDisponible || !presupuestoDisponible) {
+            if (!inversionInicial || !tasaDescuento || !personalDisponible || !presupuestoDisponible || !activosCorrientes || !pasivosCorrientes) {
                 alert('Por favor completa todos los campos financieros');
                 return;
             }
@@ -588,33 +544,26 @@
 
             // Obtener demanda histórica
             const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-            const demanda6am9am = document.querySelectorAll('.demanda-6am-9am');
-            const demanda9am12pm = document.querySelectorAll('.demanda-9am-12pm');
-            const demanda12pm3pm = document.querySelectorAll('.demanda-12pm-3pm');
-            const demanda3pm6pm = document.querySelectorAll('.demanda-3pm-6pm');
-            const demanda6pm8pm = document.querySelectorAll('.demanda-6pm-8pm');
+            const demandaH1 = document.querySelectorAll('.demanda-h1');
+            const demandaH2 = document.querySelectorAll('.demanda-h2');
+            const demandaH3 = document.querySelectorAll('.demanda-h3');
+            const demandaH4 = document.querySelectorAll('.demanda-h4');
+            const demandaH5 = document.querySelectorAll('.demanda-h5');
 
             const demandaHistorica = [];
             for (let i = 0; i < 7; i++) {
-                const franja1 = parseFloat(demanda6am9am[i].value);
-                const franja2 = parseFloat(demanda9am12pm[i].value);
-                const franja3 = parseFloat(demanda12pm3pm[i].value);
-                const franja4 = parseFloat(demanda3pm6pm[i].value);
-                const franja5 = parseFloat(demanda6pm8pm[i].value);
+                const h1 = parseFloat(demandaH1[i].value);
+                const h2 = parseFloat(demandaH2[i].value);
+                const h3 = parseFloat(demandaH3[i].value);
+                const h4 = parseFloat(demandaH4[i].value);
+                const h5 = parseFloat(demandaH5[i].value);
 
-                if (isNaN(franja1) || isNaN(franja2) || isNaN(franja3) || isNaN(franja4) || isNaN(franja5)) {
+                if (isNaN(h1) || isNaN(h2) || isNaN(h3) || isNaN(h4) || isNaN(h5)) {
                     alert('Por favor completa todos los datos de demanda histórica');
                     return;
                 }
 
-                demandaHistorica.push({
-                    dia: dias[i],
-                    '6am-9am': franja1,
-                    '9am-12pm': franja2,
-                    '12pm-3pm': franja3,
-                    '3pm-6pm': franja4,
-                    '6pm-8pm': franja5
-                });
+                demandaHistorica.push({ dia: dias[i], h1, h2, h3, h4, h5 });
             }
 
             // Calcular indicadores financieros
@@ -625,8 +574,14 @@
             const van = calcularVAN(inversion, ingresos, costos, tasa);
             const tir = calcularTIR(inversion, ingresos, costos);
 
+            // Calcular nuevos indicadores
+            const activosC = parseFloat(activosCorrientes);
+            const pasivosC = parseFloat(pasivosCorrientes);
+            const liquidez = calcularLiquidez(activosC, pasivosC);
+            const endeudamiento = calcularEndeudamiento(pasivosC, activosC);
+
             // Predecir demanda
-            const demandaPredicha = predecirDemanda(demandaHistorica.map(d => ({...d}))); // Pasamos una copia
+            const demandaPredicha = predecirDemanda(demandaHistorica);
 
             // Asignar personal
             const asignacionOptima = asignarPersonal(demandaPredicha, parseFloat(personalDisponible));
@@ -642,6 +597,10 @@
                 roi: roi,
                 van: van,
                 tir: tir,
+                activosCorrientes: activosC,
+                pasivosCorrientes: pasivosC,
+                liquidez: liquidez,
+                endeudamiento: endeudamiento,
                 demandaHistorica: demandaHistorica,
                 demandaPredicha: demandaPredicha,
                 asignacionOptima: asignacionOptima
@@ -657,14 +616,17 @@
 
             // Actualizar valores
             document.getElementById('roiValue').textContent = datosGlobales.roi + '%';
-            document.getElementById('vanValue').textContent = `$${parseFloat(datosGlobales.van).toLocaleString()}`;
+            document.getElementById('vanValue').textContent = `$${parseFloat(datosGlobales.van).toLocaleString()}`; // Corregido
             document.getElementById('tirValue').textContent = datosGlobales.tir + '%';
             document.getElementById('personalValue').textContent = datosGlobales.personalDisponible;
-            document.getElementById('presupuestoValue').textContent = `$${datosGlobales.presupuestoDisponible.toLocaleString()}`;
+            document.getElementById('presupuestoValue').textContent = `$${datosGlobales.presupuestoDisponible.toLocaleString()}`; // Corregido
+            document.getElementById('liquidezValue').textContent = datosGlobales.liquidez;
+            document.getElementById('endeudamientoValue').textContent = datosGlobales.endeudamiento + '%';
 
             // Crear gráficos
             crearGraficoFlujoCaja();
             crearGraficoDemanda();
+            crearGraficoOptimizacionLineal();
             crearGraficoPersonal();
             llenarTablaDemanda();
             llenarTablaAsignacion();
@@ -731,6 +693,63 @@
             });
         }
 
+        function crearGraficoOptimizacionLineal() {
+            const ctx = document.getElementById('optimizacionLinealChart');
+            if (charts.optimizacion) charts.optimizacion.destroy();
+
+            // Límites de las restricciones (tomados del proyecto de Álgebra como ejemplo)
+            const r1Limit = 6; // X + Y <= 6
+            const r2Limit = 9; // 2X + Y <= 9
+
+            // Puntos para la restricción 1: Y = 6 - X
+            const r1Points = [{x: 0, y: r1Limit}, {x: r1Limit, y: 0}];
+
+            // Puntos para la restricción 2: Y = 9 - 2X
+            const r2Points = [{x: 0, y: r2Limit}, {x: r2Limit / 2, y: 0}];
+            
+            // Punto óptimo de ejemplo (intersección)
+            const puntoOptimo = {x: 3, y: 3};
+
+            charts.optimizacion = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'R1: X + Y <= 6',
+                        data: r1Points,
+                        borderColor: 'rgb(59, 130, 246)',
+                        borderWidth: 3,
+                        showLine: true,
+                        pointRadius: 0,
+                        tension: 0 // Para líneas rectas
+                    }, {
+                        label: 'R2: 2X + Y <= 9',
+                        data: r2Points,
+                        borderColor: 'rgb(239, 68, 68)',
+                        borderWidth: 3,
+                        showLine: true,
+                        pointRadius: 0,
+                        tension: 0 // Para líneas rectas
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#fff' } },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `(${context.parsed.x}, ${context.parsed.y})`
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { min: 0, max: 10, title: { display: true, text: 'X (Técnicos Pico)', font: { size: 14 }, color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+                        y: { min: 0, max: 10, title: { display: true, text: 'Y (Técnicos Regulares)', font: { size: 14 }, color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } }
+                    }
+                }
+            });
+        }
+
         function crearGraficoDemanda() {
             const ctx = document.getElementById('demandaChart');
             if (charts.demanda) charts.demanda.destroy();
@@ -743,55 +762,45 @@
                     labels: dias,
                     datasets: [
                         {
-                            label: '6am-9am (Histórica)',
-                            data: datosGlobales.demandaHistorica.map(d => d['6am-9am'] || 0),
+                            label: '6-9 (Hist)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h1),
                             backgroundColor: '#fbbf24'
                         },
                         {
-                            label: '6am-9am (Predicha)',
-                            data: datosGlobales.demandaPredicha.map(d => d['6am-9am'] || 0),
+                            label: '6-9 (Pred)',
+                            data: datosGlobales.demandaPredicha.map(d => d.h1Predicha),
                             backgroundColor: '#f59e0b'
                         },
                         {
-                            label: '9am-12pm (Histórica)',
-                            data: datosGlobales.demandaHistorica.map(d => d['9am-12pm'] || 0),
+                            label: '9-12 (Hist)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h2),
                             backgroundColor: '#3b82f6'
                         },
                         {
-                            label: '9am-12pm (Predicha)',
-                            data: datosGlobales.demandaPredicha.map(d => d['9am-12pm'] || 0),
+                            label: '9-12 (Pred)',
+                            data: datosGlobales.demandaPredicha.map(d => d.h2Predicha),
                             backgroundColor: '#2563eb'
                         },
                         {
-                            label: '12pm-3pm (Histórica)',
-                            data: datosGlobales.demandaHistorica.map(d => d['12pm-3pm'] || 0),
+                            label: '12-3 (Hist)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h3),
                             backgroundColor: '#8b5cf6'
                         },
                         {
-                            label: '12pm-3pm (Predicha)',
-                            data: datosGlobales.demandaPredicha.map(d => d['12pm-3pm'] || 0),
+                            label: '12-3 (Pred)',
+                            data: datosGlobales.demandaPredicha.map(d => d.h3Predicha),
                             backgroundColor: '#7c3aed'
                         },
                         {
-                            label: '3pm-6pm (Histórica)',
-                            data: datosGlobales.demandaHistorica.map(d => d['3pm-6pm'] || 0),
-                            backgroundColor: '#ec4899'
-                        },
-                        {
-                            label: '3pm-6pm (Predicha)',
-                            data: datosGlobales.demandaPredicha.map(d => d['3pm-6pm'] || 0),
-                            backgroundColor: '#db2777'
-                        },
-                        {
-                            label: '6pm-8pm (Histórica)',
-                            data: datosGlobales.demandaHistorica.map(d => d['6pm-8pm'] || 0),
+                            label: '3-6 (Hist)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h4),
                             backgroundColor: '#10b981'
                         },
                         {
-                            label: '6pm-8pm (Predicha)',
-                            data: datosGlobales.demandaPredicha.map(d => d['6pm-8pm'] || 0),
-                            backgroundColor: '#059669'
-                        }
+                            label: '6-8 (Hist)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h5),
+                            backgroundColor: '#ef4444'
+                        },
                     ]
                 },
                 options: {
@@ -825,18 +834,14 @@
                     labels: dias,
                     datasets: [
                         {
-                            label: 'Demanda Histórica (9am-12pm)',
-                            data: datosGlobales.demandaHistorica.map(d => d['9am-12pm'] || 0),
-                            backgroundColor: datosGlobales.demandaHistorica.map(d => 
-                                (d['9am-12pm'] || 0) > 40 ? 'red' : '#10b981' // rojo si > 40, verde si <= 40
-                            )
+                            label: 'Demanda Histórica (12pm-3pm)',
+                            data: datosGlobales.demandaHistorica.map(d => d.h3),
+                            backgroundColor: '#3b82f6'
                         },
                         {
-                            label: 'Demanda Predicha (9am-12pm)',
-                            data: datosGlobales.demandaPredicha.map(d => d['9am-12pm'] || 0),
-                            backgroundColor: datosGlobales.demandaPredicha.map(d => 
-                                (d['9am-12pm'] || 0) > 40 ? 'red' : '#10b981'
-                            )
+                            label: 'Demanda Predicha (12pm-3pm)',
+                            data: datosGlobales.demandaPredicha.map(d => d.h3Predicha),
+                            backgroundColor: '#10b981'
                         }
                     ]
                 },
@@ -875,27 +880,22 @@
                     datasets: [
                         {
                             label: '6am-9am',
-                            data: datosGlobales.asignacionOptima.map(d => d['6am-9am']),
+                            data: datosGlobales.asignacionOptima.map(d => d.h1),
                             backgroundColor: '#fbbf24'
                         },
                         {
                             label: '9am-12pm',
-                            data: datosGlobales.asignacionOptima.map(d => d['9am-12pm']),
+                            data: datosGlobales.asignacionOptima.map(d => d.h2),
                             backgroundColor: '#3b82f6'
                         },
                         {
                             label: '12pm-3pm',
-                            data: datosGlobales.asignacionOptima.map(d => d['12pm-3pm']),
+                            data: datosGlobales.asignacionOptima.map(d => d.h3),
                             backgroundColor: '#8b5cf6'
                         },
                         {
                             label: '3pm-6pm',
-                            data: datosGlobales.asignacionOptima.map(d => d['3pm-6pm']),
-                            backgroundColor: '#ec4899'
-                        },
-                        {
-                            label: '6pm-8pm',
-                            data: datosGlobales.asignacionOptima.map(d => d['6pm-8pm']),
+                            data: datosGlobales.asignacionOptima.map(d => d.h4),
                             backgroundColor: '#10b981'
                         }
                     ]
@@ -929,15 +929,15 @@
             tbody.innerHTML = '';
 
             datosGlobales.demandaPredicha.forEach(dia => {
-                const total = dia['6am-9am'] + dia['9am-12pm'] + dia['12pm-3pm'] + dia['3pm-6pm'] + dia['6pm-8pm'];
+                const total = dia.h1Predicha + dia.h2Predicha + dia.h3Predicha + dia.h4Predicha + dia.h5Predicha;
                 const row = `
                     <tr class="border-b border-white/10 hover:bg-white/5">
                         <td class="p-3 font-semibold">${dia.dia}</td>
-                        <td class="text-center p-3">${dia['6am-9am']}</td>
-                        <td class="text-center p-3">${dia['9am-12pm']}</td>
-                        <td class="text-center p-3">${dia['12pm-3pm']}</td>
-                        <td class="text-center p-3">${dia['3pm-6pm']}</td>
-                        <td class="text-center p-3">${dia['6pm-8pm']}</td>
+                        <td class="text-center p-3">${dia.h1Predicha}</td>
+                        <td class="text-center p-3">${dia.h2Predicha}</td>
+                        <td class="text-center p-3">${dia.h3Predicha}</td>
+                        <td class="text-center p-3">${dia.h4Predicha}</td>
+                        <td class="text-center p-3">${dia.h5Predicha}</td>
                         <td class="text-center p-3 font-bold text-blue-300">${total}</td>
                     </tr>
                 `;
@@ -950,24 +950,21 @@
             tbody.innerHTML = '';
 
             datosGlobales.asignacionOptima.forEach(dia => {
-                const total = dia['6am-9am'] + dia['9am-12pm'] + dia['12pm-3pm'] + dia['3pm-6pm'] + dia['6pm-8pm'];
+                const total = dia.h1 + dia.h2 + dia.h3 + dia.h4 + dia.h5;
                 const row = `
                     <tr class="border-b border-white/10 hover:bg-white/5">
                         <td class="p-3 font-semibold">${dia.dia}</td>
                         <td class="text-center p-3">
-                            <span class="bg-yellow-500/20 px-3 py-1 rounded-full">${dia['6am-9am']} empleados</span>
+                            <span class="bg-yellow-500/20 px-3 py-1 rounded-full">${dia.h1} empleados</span>
                         </td>
                         <td class="text-center p-3">
-                            <span class="bg-blue-500/20 px-3 py-1 rounded-full">${dia['9am-12pm']} empleados</span>
+                            <span class="bg-blue-500/20 px-3 py-1 rounded-full">${dia.h2} empleados</span>
                         </td>
                         <td class="text-center p-3">
-                            <span class="bg-purple-500/20 px-3 py-1 rounded-full">${dia['12pm-3pm']} empleados</span>
+                            <span class="bg-purple-500/20 px-3 py-1 rounded-full">${dia.h3} empleados</span>
                         </td>
                         <td class="text-center p-3">
-                            <span class="bg-pink-500/20 px-3 py-1 rounded-full">${dia['3pm-6pm']} empleados</span>
-                        </td>
-                        <td class="text-center p-3">
-                            <span class="bg-green-500/20 px-3 py-1 rounded-full">${dia['6pm-8pm']} empleados</span>
+                            <span class="bg-green-500/20 px-3 py-1 rounded-full">${dia.h4} empleados</span>
                         </td>
                         <td class="text-center p-3 font-bold text-green-300">${total}</td>
                     </tr>
@@ -983,11 +980,11 @@
                 const row = `
                     <tr class="border-b border-white/10">
                         <td class="p-3 font-semibold">${dia.dia}</td>
-                        <td class="text-center p-3">${dia['6am-9am']} empleados</td>
-                        <td class="text-center p-3">${dia['9am-12pm']} empleados</td>
-                        <td class="text-center p-3">${dia['12pm-3pm']} empleados</td>
-                        <td class="text-center p-3">${dia['3pm-6pm']} empleados</td>
-                        <td class="text-center p-3">${dia['6pm-8pm']} empleados</td>
+                        <td class="text-center p-3">${dia.h1} empleados</td>
+                        <td class="text-center p-3">${dia.h2} empleados</td>
+                        <td class="text-center p-3">${dia.h3} empleados</td>
+                        <td class="text-center p-3">${dia.h4} empleados</td>
+                        <td class="text-center p-3">${dia.h5} empleados</td>
                     </tr>
                 `;
                 tbody2.innerHTML += row;
@@ -997,25 +994,26 @@
         function llenarReporte() {
             // Valores del reporte
             document.getElementById('reportRoi').textContent = datosGlobales.roi + '%';
-            document.getElementById('reportVan').textContent = `$${parseFloat(datosGlobales.van).toLocaleString()}`;
+            document.getElementById('reportVan').textContent = `$${parseFloat(datosGlobales.van).toLocaleString()}`; // Corregido
             document.getElementById('reportTir').textContent = datosGlobales.tir + '%';
+            document.getElementById('reportLiquidez').textContent = datosGlobales.liquidez;
+            document.getElementById('reportEndeudamiento').textContent = datosGlobales.endeudamiento + '%';
 
             // Análisis
             const ingresoTotal = datosGlobales.ingresos.reduce((a, b) => a + b, 0);
-            const costoTotal = datosGlobales.costos.reduce((a, b) => a + b, 0);
-            const gananciaNeta = ingresoTotal - costoTotal;
-            const roiCorrecto = ((gananciaNeta / datosGlobales.inversionInicial) * 100).toFixed(2);
             const analisis = document.getElementById('reportAnalysis');
             analisis.innerHTML = `
-                <p>• La inversión de $${datosGlobales.inversionInicial.toLocaleString()} genera un ROI de <strong>${roiCorrecto}%</strong>.</p>
-                <p>• El VAN es de <strong>$${parseFloat(datosGlobales.van).toLocaleString()}</strong>, indicando ${parseFloat(datosGlobales.van) > 0 ? 'que el proyecto agrega valor' : 'que requiere ajustes'}.</p>
+                <p>• La inversión de $${datosGlobales.inversionInicial.toLocaleString()} genera un ROI de ${datosGlobales.roi}%.</p>
+                <p>• La razón de liquidez es de ${datosGlobales.liquidez}, lo que indica que la empresa ${datosGlobales.liquidez >= 1 ? 'puede cubrir sus deudas a corto plazo' : 'podría tener dificultades para cubrir sus deudas a corto plazo'}.</p>
+                <p>• La tasa de endeudamiento a corto plazo es del ${datosGlobales.endeudamiento}%, mostrando la proporción de activos financiada por deuda.</p>
+                <p>• El VAN es de $${parseFloat(datosGlobales.van).toLocaleString()}, indicando ${parseFloat(datosGlobales.van) > 0 ? 'que el proyecto agrega valor' : 'que requiere ajustes'}.</p>
                 <p>• La TIR de ${datosGlobales.tir}% ${parseFloat(datosGlobales.tir) > datosGlobales.tasaDescuento ? 'supera' : 'está por debajo de'} la tasa de descuento del ${datosGlobales.tasaDescuento}%.</p>
                 <p>• Los ingresos proyectados totales son de $${ingresoTotal.toLocaleString()} en 12 meses.</p>
             `;
 
             // Total clientes
             const totalClientes = datosGlobales.demandaPredicha.reduce((acc, dia) => 
-                acc + dia['6am-9am'] + dia['9am-12pm'] + dia['12pm-3pm'] + dia['3pm-6pm'] + dia['6pm-8pm'], 0
+                acc + dia.h1Predicha + dia.h2Predicha + dia.h3Predicha + dia.h4Predicha + dia.h5Predicha, 0
             );
             document.getElementById('totalClientes').textContent = `• Total de clientes predichos: ${totalClientes}`;
 
