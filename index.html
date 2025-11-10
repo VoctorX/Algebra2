@@ -240,6 +240,28 @@
                     <div class="glass rounded-2xl p-6 border border-white/20">
                         <h3 class="text-2xl font-bold text-white mb-6">Gráfico del Modelo de Optimización Lineal</h3>
                         <canvas id="optimizacionLinealChart" height="100"></canvas>
+                        <div class="mt-4 text-center text-blue-200">
+                            <p><span class="font-bold text-green-400">Ganancia Bruta (F)</span> = 469.566 * e^(0.144x)</p>
+                            <p><span class="font-bold text-red-400">Costo Total (C)</span> = 310x</p>
+                            <p><span class="font-bold text-blue-400">Ganancia Neta (G)</span> = F - C</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl p-6 border border-white/20">
+                        <h3 class="text-2xl font-bold text-white mb-6">Tabla de Simulación de Ganancia Neta</h3>
+                        <div class="overflow-y-auto max-h-96">
+                            <table class="w-full text-white">
+                                <thead>
+                                    <tr class="border-b border-white/20">
+                                        <th class="text-center p-3">Técnicos Pico (X)</th>
+                                        <th class="text-center p-3">Ganancia Bruta (F)</th>
+                                        <th class="text-center p-3">Costo Total (C)</th>
+                                        <th class="text-center p-3">Ganancia Neta (G)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="optimizacionTableBody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -466,97 +488,50 @@
             return ratio.toFixed(2);
         }
 
-        // --- INICIO DE LÓGICA DE OPTIMIZACIÓN LINEAL (MÉTODO SIMPLEX) ---
+        // --- INICIO DE LÓGICA DE OPTIMIZACIÓN EXPONENCIAL ---
 
-        // Constantes del modelo de negocio para la función objetivo
-        const C_BASE = 469566;
-        const C_X_REL = 4; // Peso para técnicos de hora pico (X)
-        const C_Y_REL = 3; // Peso para técnicos de horario regular (Y)
-
-        // Implementación del Método Simplex para resolver el problema de programación lineal.
-        function solveWithSimplex(r1Limit, r2Limit) {
-            // Paso 1: Configurar el Tableau Simplex inicial.
-            // Las inecuaciones se convierten en ecuaciones con variables de holgura (s1, s2).
-            let tableau = [
-                // Z,  X (Pico),         Y (Regular),        s1, s2, Solución
-                [1, -(C_X_REL * C_BASE), -(C_Y_REL * C_BASE), 0,  0,  0],       // Fila Z (Función Objetivo a maximizar)
-                [0, 1,                   1,                   1,  0,  r1Limit], // Fila s1 (Restricción 1: X + Y <= r1Limit)
-                [0, 2,                   1,                   0,  1,  r2Limit]  // Fila s2 (Restricción 2: 2X + Y <= r2Limit)
-            ];
-
-            const MAX_ITERATIONS = 10; // Límite para prevenir bucles infinitos.
-            for (let iter = 0; iter < MAX_ITERATIONS; iter++) {
-                // Paso 2: Buscar la columna pivote (el valor más negativo en la fila Z).
-                const zRow = tableau[0];
-                let pivotColIndex = -1;
-                let minZValue = 0;
-                for (let j = 1; j < zRow.length - 1; j++) {
-                    if (zRow[j] < minZValue) {
-                        minZValue = zRow[j];
-                        pivotColIndex = j;
-                    }
-                }
-
-                // Si no hay negativos, la solución es óptima.
-                if (pivotColIndex === -1) break;
-
-                // Paso 3: Determinar la fila pivote (el menor ratio positivo).
-                let pivotRowIndex = -1;
-                let minRatio = Infinity;
-                for (let i = 1; i < tableau.length; i++) {
-                    const pivotColValue = tableau[i][pivotColIndex];
-                    if (pivotColValue > 0) {
-                        const ratio = tableau[i][tableau[i].length - 1] / pivotColValue;
-                        if (ratio < minRatio) {
-                            minRatio = ratio;
-                            pivotRowIndex = i;
-                        }
-                    }
-                }
-
-                // Paso 4: Realizar operaciones de fila para pivotar.
-                const pivotElement = tableau[pivotRowIndex][pivotColIndex];
-                // Normalizar la fila pivote.
-                for (let j = 0; j < tableau[pivotRowIndex].length; j++) {
-                    tableau[pivotRowIndex][j] /= pivotElement;
-                }
-                // Hacer cero los otros elementos de la columna pivote.
-                for (let i = 0; i < tableau.length; i++) {
-                    if (i !== pivotRowIndex) {
-                        const factor = tableau[i][pivotColIndex];
-                        for (let j = 0; j < tableau[i].length; j++) {
-                            tableau[i][j] -= factor * tableau[pivotRowIndex][j];
-                        }
-                    }
-                }
-            }
-
-            return extractSolutionFromTableau(tableau);
+        /**
+         * Calcula la ganancia bruta según el modelo exponencial.
+         * F(x, y) = 469.566 * e^(0.1*X + 0.08*Y)
+         * @param {number} x - Técnicos de hora pico.
+         * @param {number} y - Técnicos de horario regular.
+         * @returns {number} La ganancia bruta calculada.
+         */
+        function calcularGananciaExponencial(x, y) {
+            return 469.566 * Math.exp(0.1 * x + 0.08 * y);
         }
 
-        // Procesa el tableau final para extraer la solución.
-        function extractSolutionFromTableau(tableau) {
-            const solutionColIndex = tableau[0].length - 1;
-            let solution = { x: 0, y: 0, z: tableau[0][solutionColIndex] };
+        /**
+         * Simula la ganancia neta para diferentes combinaciones de técnicos.
+         * G(X,Y) = GananciaExponencial - CostoTotal
+         * @param {number} maxTecnicos - Número máximo de técnicos a simular.
+         * @param {number} costoPorTecnico - Costo unitario por técnico.
+         * @returns {Array} Un array con los resultados de la simulación.
+         */
+        function generarCurvaFuncion(puntos = 100, xMax = 25) {
+            const resultados = [];
+            const costoPorTecnico = 200;
 
-            // Busca las columnas de X (índice 1) e Y (índice 2) para ver si son variables básicas.
-            for (let j = 1; j <= 2; j++) {
-                let pivotRow = -1;
-                let oneCount = 0;
-                for (let i = 1; i < tableau.length; i++) {
-                    if (Math.round(tableau[i][j]) === 1) {
-                        oneCount++;
-                        pivotRow = i;
-                    }
-                }
+            for (let i = 0; i <= puntos; i++) {
+                const x = (i / puntos) * xMax; // Genera puntos desde 0 hasta xMax
+                const y = x * 0.55; // Mantenemos la relación para tener una función de una variable
 
-                // Si la columna tiene un solo '1' y el resto son '0's (en las filas de restricciones), es básica.
-                if (oneCount === 1) {
-                    if (j === 1) solution.x = tableau[pivotRow][solutionColIndex]; // Es X
-                    if (j === 2) solution.y = tableau[pivotRow][solutionColIndex]; // Es Y
-                }
+                // F(x) = 469.566 * e^(0.1x + 0.08 * (0.55x)) = 469.566 * e^(0.144x)
+                const gananciaBruta = 469.566 * Math.exp(0.144 * x);
+                
+                // C(x) = 200 * (x + 0.55x) = 200 * 1.55x = 310x
+                const costoTotal = 310 * x;
+
+                const gananciaNeta = gananciaBruta - costoTotal;
+
+                resultados.push({
+                    x: x,
+                    gananciaBruta: gananciaBruta,
+                    costoTotal: costoTotal,
+                    gananciaNeta: gananciaNeta
+                });
             }
-            return solution;
+            return resultados;
         }
 
         // Función de predicción polinómica para simular un modelo de machine learning.
@@ -718,6 +693,7 @@
             crearGraficoPersonal();
             llenarTablaDemanda();
             llenarTablaAsignacion();
+            llenarTablaOptimizacion(); // Nueva función
             llenarReporte();
         }
 
@@ -785,39 +761,39 @@
             const ctx = document.getElementById('optimizacionLinealChart');
             if (charts.optimizacion) charts.optimizacion.destroy();
 
-            // Límites de las restricciones (tomados del proyecto de Álgebra como ejemplo)
-            const r1Limit = 6; // X + Y <= 6
-            const r2Limit = 9; // 2X + Y <= 9
-
-            // Puntos para la restricción 1: Y = 6 - X
-            const r1Points = [{x: 0, y: r1Limit}, {x: r1Limit, y: 0}];
-
-            // Puntos para la restricción 2: Y = 9 - 2X
-            const r2Points = [{x: 0, y: r2Limit}, {x: r2Limit / 2, y: 0}];
-            
-            // Punto óptimo de ejemplo (intersección)
-            const puntoOptimo = {x: 3, y: 3};
+            // Realizamos la simulación con el modelo exponencial
+            const simulacion = generarCurvaFuncion(100, 25); // Generamos 100 puntos hasta X=25
 
             charts.optimizacion = new Chart(ctx, {
-                type: 'scatter',
+                type: 'scatter', // Cambiamos a 'scatter' para un eje X numérico
                 data: {
-                    datasets: [{
-                        label: 'R1: X + Y <= 6',
-                        data: r1Points,
-                        borderColor: 'rgb(59, 130, 246)',
-                        borderWidth: 3,
-                        showLine: true,
-                        pointRadius: 0,
-                        tension: 0 // Para líneas rectas
-                    }, {
-                        label: 'R2: 2X + Y <= 9',
-                        data: r2Points,
-                        borderColor: 'rgb(239, 68, 68)',
-                        borderWidth: 3,
-                        showLine: true,
-                        pointRadius: 0,
-                        tension: 0 // Para líneas rectas
-                    }]
+                    datasets: [
+                        {
+                            label: 'Ganancia Bruta (F)',
+                            data: simulacion.map(s => ({x: s.x, y: s.gananciaBruta})), // Usamos formato {x, y}
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            tension: 0.4,
+                            showLine: true // Conectamos los puntos para ver la curva
+                        },
+                        {
+                            label: 'Costo Total (C)',
+                            data: simulacion.map(s => ({x: s.x, y: s.costoTotal})),
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4,
+                            showLine: true
+                        },
+                        {
+                            label: 'Ganancia Neta (G)',
+                            data: simulacion.map(s => ({x: s.x, y: s.gananciaNeta})),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            borderWidth: 3,
+                            showLine: true
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -826,19 +802,33 @@
                         legend: { position: 'top', labels: { color: '#fff' } },
                         tooltip: {
                             callbacks: {
-                                label: (context) => `(${context.parsed.x}, ${context.parsed.y})`
+                                label: (context) => `Técnicos Pico (X): ${context.parsed.x}, Monto: $${context.parsed.y.toFixed(2)}`
                             }
                         }
                     },
                     scales: {
-                        x: { min: 0, max: 10, title: { display: true, text: 'X (Técnicos Pico)', font: { size: 14 }, color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
-                        y: { min: 0, max: 10, title: { display: true, text: 'Y (Técnicos Regulares)', font: { size: 14 }, color: '#fff' }, ticks: { color: '#fff' }, grid: { color: 'rgba(255, 255, 255, 0.1)' } }
+                        x: { 
+                            type: 'linear', 
+                            position: 'bottom', 
+                            title: { display: true, text: 'Técnicos de Hora Pico (X)', font: { size: 14 }, color: '#fff' }, 
+                            ticks: { color: '#fff' }, 
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            min: 0, // Empezamos desde 0 para ver toda la historia
+                            max: 25   // Y a terminar donde se ve la acción
+                        },
+                        y: { 
+                            title: { display: true, text: 'Monto ($)', font: { size: 14 }, color: '#fff' }, 
+                            ticks: { color: '#fff' }, 
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            beginAtZero: false // ¡ESTE ES EL CAMBIO CLAVE!
+                        }
                     }
                 }
             });
         }
 
         function crearGraficoDemanda() {
+
             const ctx = document.getElementById('demandaChart');
             if (charts.demanda) charts.demanda.destroy();
 
@@ -1009,6 +999,26 @@
                         }
                     }
                 }
+            });
+        }
+
+        function llenarTablaOptimizacion() {
+            const tbody = document.getElementById('optimizacionTableBody');
+            tbody.innerHTML = '';
+            // Generamos los mismos datos que el gráfico para la tabla
+            const simulacion = generarCurvaFuncion(25, 25).filter(p => p.x >= 8 && p.x % 2 === 0);
+            simulacion.forEach(s => {
+                const esPositivo = s.gananciaNeta > 0;
+                const colorClass = esPositivo ? 'text-green-400' : 'text-red-400';
+                const row = `
+                    <tr class="border-b border-white/10 hover:bg-white/5">
+                        <td class="text-center p-3">${s.x}</td>
+                        <td class="text-center p-3">$${s.gananciaBruta.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                        <td class="text-center p-3">$${s.costoTotal.toLocaleString()}</td>
+                        <td class="text-center p-3 font-bold ${colorClass}">$${s.gananciaNeta.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
             });
         }
 
